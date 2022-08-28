@@ -1,0 +1,29 @@
+ARG FROM_TAG
+FROM fedora:${FROM_TAG}
+
+RUN dnf makecache
+RUN dnf update -y
+
+RUN dnf install -y git cmake gcc-c++
+
+RUN useradd node
+RUN mkdir /app && chown node:node /app
+USER node
+
+WORKDIR /home/node
+
+RUN mkdir /home/node/.nvm
+ENV NVM_DIR /home/node/.nvm
+
+ENV NODE_VERSION 16.17.0
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION
+
+ENV NODE_PATH /home/node/.nvm/versions/node/v$NODE_VERSION/lib/node_modules
+ENV PATH $PATH:/home/node/.nvm/versions/node/v$NODE_VERSION/bin
+
+RUN npm i -g @angular/cli @ionic/cli
+
+WORKDIR /app

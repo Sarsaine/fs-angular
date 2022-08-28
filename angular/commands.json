@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "default": {
+        "from": [],
+        "tags": {
+            "latest": {
+                "arguments": {
+                    "FROM_TAG": "latest"
+                }
+            }
+        },
+        "arguments": {
+            "FROM_TAG": "latest"
+        },
+        "volumes": [
+            "$PWD:/app:z"
+        ],
+        "ports": [],
+        "interactive": true,
+        "detached": false,
+        "match_ids": true,
+        "workdir": "/app"
+    },
+    "commands": {
+        "npm": {
+            "command": "npm",
+            "enabled": true,
+            "volumes": [
+                "$HOME/.npm:/home/node/.npm:z"
+            ]
+        },
+        "ng": {
+            "command": "ng",
+            "enabled": true
+        },
+        "ng_serve": {
+            "command": "ng serve --disable-host-check --host=0.0.0.0",
+            "enabled": true,
+            "ports": [
+                "4200:4200"
+            ]
+        },
+        "ionic": {
+            "command": "ionic",
+            "enabled": true
+        },
+        "ionic_serve": {
+            "command": "ionic serve --external --no-open -- --disable-host-check",
+            "enabled": true,
+            "ports": [
+                "8100:8100"
+            ]
+        }
+    }
+}
