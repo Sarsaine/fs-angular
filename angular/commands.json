@@ -50,6 +50,13 @@
             "ports": [
                 "8100:8100"
             ]
+        },
+        "coverage_server": {
+            "command": "http-server -p 9090 -c-1 coverage",
+            "enabled": true,
+            "ports": [
+                "9090:9090"
+            ]
         }
     }
 }

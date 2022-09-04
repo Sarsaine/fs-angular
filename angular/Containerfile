@@ -24,6 +24,6 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
 ENV NODE_PATH /home/node/.nvm/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $PATH:/home/node/.nvm/versions/node/v$NODE_VERSION/bin
 
-RUN npm i -g @angular/cli @ionic/cli
+RUN npm i -g @angular/cli @ionic/cli http-server
 
 WORKDIR /app
